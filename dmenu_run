@@ -1,0 +1,12 @@
+#!/bin/ksh
+
+
+case $($HOME/DWM/dmenu-4.2.1/dmenu "$@") in
+  rxvt) exec rxvt ;;
+  chrome) exec google-chrome ;;
+esac << EOF
+rxvt
+chrome
+EOF
+
+
