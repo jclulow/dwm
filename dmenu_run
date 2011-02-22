@@ -1,12 +1,17 @@
 #!/bin/ksh
 
-
-case $($HOME/DWM/dmenu-4.2.1/dmenu "$@") in
-  xterm) exec xterm ;;
-  chrome) exec google-chrome ;;
-esac << EOF
+function dolist {
+  cat << EOF
 xterm
 chrome
 EOF
+}
 
+ex=$(dolist | $HOME/DWM/dmenu-4.2.1/dmenu "$@")
+
+case "$ex" in
+  xterm) exec xterm ;;
+  chrome) exec google-chrome ;;
+  *) exec "$ex" ;;
+esac
 
